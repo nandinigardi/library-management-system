@@ -1,15 +1,77 @@
 {% extends "base.html" %}
-{% block title %}Dashboard{% endblock %}
+
 {% block content %}
-<div class="row text-center">
-    <div class="col-md-4 mb-3">
-        <a href="/books" class="btn btn-primary btn-lg w-100 shadow">📚 Manage Books</a>
+<div class="row align-items-center mb-5 mt-4">
+    <div class="col-lg-6 mb-4 mb-lg-0" data-aos="fade-right">
+        <h6 class="text-primary fw-bold text-uppercase mb-2" style="letter-spacing: 2px;">Welcome to Lumina</h6>
+        <h1 class="display-4 fw-bold mb-3" style="color: var(--dark-surface);">Modern Intelligence for Your <span
+                style="background: var(--primary-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Library</span>.
+        </h1>
+        <p class="lead text-muted mb-4">Experience a seamless way to manage books, track students, and handle issuances
+            with a beautiful, integrated dashboard designed for excellence.</p>
+        <div class="d-flex flex-wrap gap-3">
+            <a href="/books" class="btn btn-premium btn-lg">
+                <i class="fa-solid fa-plus-circle me-2"></i>Manage Books
+            </a>
+            <a href="/issued_books" class="btn btn-outline-primary btn-lg border-2 rounded-4">
+                View Records
+            </a>
+        </div>
     </div>
-    <div class="col-md-4 mb-3">
-        <a href="/students" class="btn btn-success btn-lg w-100 shadow">🎓 Manage Students</a>
+    <div class="col-lg-6" data-aos="zoom-in" data-aos-delay="200">
+        <div class="position-relative">
+            <div class="rounded-5 overflow-hidden shadow-lg" style="border: 8px solid white;">
+                <img src="/static/images/hero.png" class="img-fluid" alt="Library Hero">
+            </div>
+            <!-- Dynamic Floating Stat -->
+            <div class="glass-card p-3 position-absolute bottom-0 start-0 m-4 d-none d-md-block" style="width: 180px;">
+                <div class="d-flex align-items-center">
+                    <div class="bg-primary bg-opacity-10 p-2 rounded-3 me-3 text-primary">
+                        <i class="fa-solid fa-chart-line fa-lg"></i>
+                    </div>
+                    <div>
+                        <div class="fw-bold h5 mb-0">99.9%</div>
+                        <div class="small text-muted">Accuracy</div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="col-md-4 mb-3">
-        <a href="/issued_books" class="btn btn-warning btn-lg w-100 shadow">📝 Issued Books</a>
+</div>
+
+<div class="row g-4 mb-5" data-aos="fade-up" data-aos-delay="400">
+    <div class="col-md-4">
+        <div class="glass-card p-4 h-100 border-start border-4 border-primary">
+            <div class="text-primary mb-3">
+                <i class="fa-solid fa-book-bookmark fa-2xl"></i>
+            </div>
+            <h4 class="fw-bold">Smart Catalog</h4>
+            <p class="text-muted small">Easily categorize, search, and manage your entire book collection with real-time
+                status updates.</p>
+            <a href="/books" class="stretched-link"></a>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="glass-card p-4 h-100 border-start border-4 border-purple" style="border-color: #a855f7 !important;">
+            <div class="text-purple mb-3" style="color: #a855f7;">
+                <i class="fa-solid fa-user-check fa-2xl"></i>
+            </div>
+            <h4 class="fw-bold">Student Hub</h4>
+            <p class="text-muted small">Track student departments, years, and borrowing history in one centralized,
+                sleek interface.</p>
+            <a href="/students" class="stretched-link"></a>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="glass-card p-4 h-100 border-start border-4 border-accent" style="border-color: #f43f5e !important;">
+            <div class="text-accent mb-3" style="color: #f43f5e;">
+                <i class="fa-solid fa-clock-rotate-left fa-2xl"></i>
+            </div>
+            <h4 class="fw-bold">Issuance Flow</h4>
+            <p class="text-muted small">Automated fine calculation and due date tracking to keep your operations running
+                perfectly.</p>
+            <a href="/issued_books" class="stretched-link"></a>
+        </div>
     </div>
 </div>
 {% endblock %}

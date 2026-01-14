@@ -1,12 +1,41 @@
 {% extends "base.html" %}
-{% block title %}Add Student{% endblock %}
+{% block title %}Onboard Student | Lumina{% endblock %}
 {% block content %}
-<h2>Add Student</h2>
-<form method="post" class="card p-3 shadow">
-    <input name="name" placeholder="Student Name" class="form-control mb-2" required>
-    <input name="department" placeholder="Department" class="form-control mb-2" required>
-    <input name="year" type="number" placeholder="Year" class="form-control mb-2" required>
-    <button class="btn btn-success">Add Student</button>
-</form>
-<a href="/students" class="btn btn-secondary mt-2">⬅ Back</a>
+<div class="row justify-content-center mt-5">
+    <div class="col-md-6" data-aos="fade-up">
+        <div class="glass-card p-5">
+            <div class="d-flex align-items-center mb-4">
+                <div class="bg-success bg-opacity-10 p-3 rounded-4 me-3 text-success">
+                    <i class="fa-solid fa-user-graduate fa-2xl"></i>
+                </div>
+                <div>
+                    <h2 class="fw-bold mb-0">Student Profile</h2>
+                    <p class="text-muted mb-0 small text-uppercase fw-bold ls-1">Membership Registration</p>
+                </div>
+            </div>
+
+            <form method="post">
+                <div class="mb-3">
+                    <label class="form-label small fw-bold text-muted">Full Legal Name</label>
+                    <input name="name" placeholder="e.g. Johnathan Doe" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label small fw-bold text-muted">Academic Department</label>
+                    <input name="department" placeholder="e.g. Computer Science" class="form-control" required>
+                </div>
+                <div class="mb-4">
+                    <label class="form-label small fw-bold text-muted">Academic Year (Current)</label>
+                    <input name="year" type="number" placeholder="e.g. 3" class="form-control" required>
+                </div>
+                <button class="btn btn-premium w-100 py-3 rounded-pill shadow-lg bg-success border-0"
+                    style="background: linear-gradient(135deg, #10b981 0%, #059669 100%);"><i
+                        class="fa-solid fa-user-plus me-2"></i> Register Student</button>
+            </form>
+            <div class="mt-4 text-center">
+                <a href="/students" class="btn btn-link text-muted text-decoration-none small"><i
+                        class="fa-solid fa-arrow-left me-2"></i>Cancel and Return</a>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}

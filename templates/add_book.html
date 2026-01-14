@@ -1,12 +1,40 @@
 {% extends "base.html" %}
-{% block title %}Add Book{% endblock %}
+{% block title %}Add New Book | Lumina{% endblock %}
 {% block content %}
-<h2>Add Book</h2>
-<form method="post" class="card p-3 shadow">
-    <input name="name" placeholder="Book Name" class="form-control mb-2" required>
-    <input name="author" placeholder="Author" class="form-control mb-2" required>
-    <input name="category" placeholder="Category" class="form-control mb-2" required>
-    <button class="btn btn-success">Add Book</button>
-</form>
-<a href="/books" class="btn btn-secondary mt-2">⬅ Back</a>
+<div class="row justify-content-center mt-5">
+    <div class="col-md-6" data-aos="fade-up">
+        <div class="glass-card p-5">
+            <div class="d-flex align-items-center mb-4">
+                <div class="bg-primary bg-opacity-10 p-3 rounded-4 me-3 text-primary">
+                    <i class="fa-solid fa-book-medical fa-2xl"></i>
+                </div>
+                <div>
+                    <h2 class="fw-bold mb-0">Record New Book</h2>
+                    <p class="text-muted mb-0 small text-uppercase fw-bold ls-1">Library Catalog Entrance</p>
+                </div>
+            </div>
+
+            <form method="post">
+                <div class="mb-3">
+                    <label class="form-label small fw-bold text-muted">Book Title</label>
+                    <input name="name" placeholder="e.g. The Great Gatsby" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label small fw-bold text-muted">Author Name</label>
+                    <input name="author" placeholder="e.g. F. Scott Fitzgerald" class="form-control" required>
+                </div>
+                <div class="mb-4">
+                    <label class="form-label small fw-bold text-muted">Category</label>
+                    <input name="category" placeholder="e.g. Classic Literature" class="form-control" required>
+                </div>
+                <button class="btn btn-premium w-100 py-3 rounded-pill shadow-lg"><i class="fa-solid fa-save me-2"></i>
+                    Save to Database</button>
+            </form>
+            <div class="mt-4 text-center">
+                <a href="/books" class="btn btn-link text-muted text-decoration-none small"><i
+                        class="fa-solid fa-arrow-left me-2"></i>Cancel and Return</a>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}
