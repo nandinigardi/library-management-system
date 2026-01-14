@@ -1,0 +1,124 @@
+{% extends "base.html" %}
+{% block content %}
+
+{% if books %}
+<h3 class="text-primary">📚 Books List</h3>
+<form action="/view_books" method="GET" class="mb-3 d-flex">
+    <input type="text" name="q" class="form-control me-2" placeholder="Search books by name, author or category..."
+        value="{{ search_query }}">
+    <button type="submit" class="btn btn-primary">Search</button>
+    {% if search_query %}
+    <a href="/view_books" class="btn btn-outline-secondary ms-2">Clear</a>
+    {% endif %}
+</form>
+
+<table class="table table-bordered table-striped shadow mb-3">
+    <tr class="table-dark">
+        <th>Book ID</th>
+        <th>Name</th>
+        <th>Author</th>
+        <th>Category</th>
+        <th>Status</th>
+        <th>Action</th>
+    </tr>
+    {% for b in books %}
+    <tr>
+        <td>{{ b.bookid }}</td>
+        <td>{{ b.name }}</td>
+        <td>{{ b.author }}</td>
+        <td>{{ b.category }}</td>
+        <td>
+            {% if b.status == 'Available' %}
+            <span class="badge bg-success">Available</span>
+            {% else %}
+            <span class="badge bg-danger">Issued</span>
+            {% endif %}
+        </td>
+        <td>
+            <a href="/update_book/{{ b.bookid }}" class="btn btn-warning btn-sm">Update</a>
+            <a href="/delete_book/{{ b.bookid }}" class="btn btn-danger btn-sm"
+                onclick="return confirm('Delete this book?')">Delete</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+<a href="/books" class="btn btn-secondary">⬅ Back</a>
+{% endif %}
+
+{% if students %}
+<h3 class="text-success mt-4">🎓 Students List</h3>
+<form action="/view_students" method="GET" class="mb-3 d-flex">
+    <input type="text" name="q" class="form-control me-2" placeholder="Search students by name or department..."
+        value="{{ search_query }}">
+    <button type="submit" class="btn btn-success">Search</button>
+    {% if search_query %}
+    <a href="/view_students" class="btn btn-outline-secondary ms-2">Clear</a>
+    {% endif %}
+</form>
+
+<table class="table table-bordered table-striped shadow mb-3">
+    <tr class="table-dark">
+        <th>Student ID</th>
+        <th>Name</th>
+        <th>Department</th>
+        <th>Year</th>
+        <th>Action</th>
+    </tr>
+    {% for s in students %}
+    <tr>
+        <td>{{ s.studentid }}</td>
+        <td>{{ s.name }}</td>
+        <td>{{ s.department }}</td>
+        <td>{{ s.year }}</td>
+        <td>
+            <a href="/update_student/{{ s.studentid }}" class="btn btn-warning btn-sm">Update</a>
+            <a href="/delete_student/{{ s.studentid }}" class="btn btn-danger btn-sm"
+                onclick="return confirm('Delete this student?')">Delete</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+<a href="/students" class="btn btn-secondary">⬅ Back</a>
+{% endif %}
+
+{% if issued %}
+<h3 class="text-warning mt-4">📝 Issued Books</h3>
+<table class="table table-bordered table-striped shadow mb-3">
+    <tr class="table-dark">
+        <th>Issue ID</th>
+        <th>Student ID</th>
+        <th>Student Name</th>
+        <th>Book ID</th>
+        <th>Book Name</th>
+        <th>Issue Date</th>
+        <th>Due Date</th>
+        <th>Return Date</th>
+        <th>Fine</th>
+        <th>Action</th>
+    </tr>
+    {% for i in issued %}
+    <tr>
+        <td>{{ i.id }}</td>
+        <td>{{ i.studentid }}</td>
+        <td>{{ i.student_name }}</td>
+        <td>{{ i.bookid }}</td>
+        <td>{{ i.book_name }}</td>
+        <td>{{ i.issue_date }}</td>
+        <td>{{ i.due_date }}</td>
+        <td>{{ i.return_date or 'Not Returned' }}</td>
+        <td>{{ i.fine }}</td>
+        <td>
+            {% if not i.return_date %}
+            <a href="/return_book/{{ i.id }}" class="btn btn-primary btn-sm">Return</a>
+            {% endif %}
+            <a href="/update_issued/{{ i.id }}" class="btn btn-warning btn-sm">Update</a>
+            <a href="/delete_issued/{{ i.id }}" class="btn btn-danger btn-sm"
+                onclick="return confirm('Delete this issued record?')">Delete</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+<a href="/" class="btn btn-secondary">⬅ Back</a>
+{% endif %}
+
+{% endblock %}

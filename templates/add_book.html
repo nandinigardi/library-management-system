@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}Add Book{% endblock %}
+{% block content %}
+<h2>Add Book</h2>
+<form method="post" class="card p-3 shadow">
+    <input name="name" placeholder="Book Name" class="form-control mb-2" required>
+    <input name="author" placeholder="Author" class="form-control mb-2" required>
+    <input name="category" placeholder="Category" class="form-control mb-2" required>
+    <button class="btn btn-success">Add Book</button>
+</form>
+<a href="/books" class="btn btn-secondary mt-2">⬅ Back</a>
+{% endblock %}

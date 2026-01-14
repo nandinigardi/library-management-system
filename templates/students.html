@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block title %}Students{% endblock %}
+
+{% block content %}
+<h2 class="text-success mb-3">🎓 Students List</h2>
+
+<table class="table table-bordered table-striped shadow">
+    <thead class="table-dark">
+        <tr>
+            <th>No</th>
+            <th>Name</th>
+            <th>Department</th>
+            <th>Year</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for s in students %}
+        <tr>
+            <td>{{ loop.index }}</td>
+            <td>{{ s.name }}</td>
+            <td>{{ s.department }}</td>
+            <td>{{ s.year }}</td>
+            <td>
+                <a href="/update_student/{{ s.studentid }}" class="btn btn-warning btn-sm">Update</a>
+                <a href="/delete_student/{{ s.studentid }}" class="btn btn-danger btn-sm" onclick="return confirm('Delete this student?')">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<a href="/students_menu" class="btn btn-secondary mt-2">⬅ Back</a>
+{% endblock %}

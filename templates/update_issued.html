@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}Update Issued Book{% endblock %}
+
+{% block content %}
+<h2 class="text-warning mb-3">✏️ Update Issued Book</h2>
+
+<form method="post" class="card p-3 shadow">
+    <label>Student</label>
+    <select name="student_id" class="form-control mb-2" required>
+        {% for s in students %}
+        <option value="{{ s.studentid }}" {% if s.studentid==issued.studentid %}selected{% endif %}>
+            {{ s.name }} ({{ s.department }})
+        </option>
+        {% endfor %}
+    </select>
+
+    <label>Book</label>
+    <select name="book_id" class="form-control mb-2" required>
+        {% for b in books %}
+        <option value="{{ b.bookid }}" {% if b.bookid==issued.bookid %}selected{% endif %}>
+            {{ b.name }} by {{ b.author }}
+        </option>
+        {% endfor %}
+    </select>
+
+    <label>Issue Date</label>
+    <input type="date" name="issue_date" value="{{ issued.issue_date }}" class="form-control mb-2" required>
+
+    <label>Due Date</label>
+    <input type="date" name="due_date" value="{{ issued.due_date }}" class="form-control mb-2" required>
+
+    <button class="btn btn-warning mt-2">Update Issued Book</button>
+    <a href="/view" class="btn btn-secondary mt-2">⬅ Back</a>
+</form>
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Dashboard{% endblock %}
+{% block content %}
+<div class="row text-center">
+    <div class="col-md-4 mb-3">
+        <a href="/books" class="btn btn-primary btn-lg w-100 shadow">📚 Manage Books</a>
+    </div>
+    <div class="col-md-4 mb-3">
+        <a href="/students" class="btn btn-success btn-lg w-100 shadow">🎓 Manage Students</a>
+    </div>
+    <div class="col-md-4 mb-3">
+        <a href="/issued_books" class="btn btn-warning btn-lg w-100 shadow">📝 Issued Books</a>
+    </div>
+</div>
+{% endblock %}

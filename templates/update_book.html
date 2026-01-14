@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}Update Book{% endblock %}
+{% block content %}
+<h2>Update Book</h2>
+<form method="post" class="card p-3 shadow">
+    <input name="name" value="{{ book.name }}" class="form-control mb-2" required>
+    <input name="author" value="{{ book.author }}" class="form-control mb-2" required>
+    <input name="category" value="{{ book.category }}" class="form-control mb-2" required>
+    <button class="btn btn-warning">Update Book</button>
+</form>
+<a href="/view_books" class="btn btn-secondary mt-2">⬅ Back</a>
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}Return Book{% endblock %}
+{% block content %}
+<h2 class="text-primary">🔄 Return Book</h2>
+<div class="card p-4 shadow">
+    <p><strong>Student:</strong> {{ issued.student_name }}</p>
+    <p><strong>Book:</strong> {{ issued.book_name }}</p>
+    <p><strong>Issue Date:</strong> {{ issued.issue_date }}</p>
+    <p><strong>Due Date:</strong> {{ issued.due_date }}</p>
+
+    <form method="post">
+        <label>Return Date</label>
+        <input type="date" name="return_date" class="form-control mb-3" required value="{{ today }}">
+
+        <div class="alert alert-info">
+            Fine is calculated as ₹5 per day after the due date.
+        </div>
+
+        <button class="btn btn-success">Calculate & Return</button>
+        <a href="/view_issued" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+{% endblock %}

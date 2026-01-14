@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}Update Student{% endblock %}
+{% block content %}
+<h2>Update Student</h2>
+<form method="post" class="card p-3 shadow">
+    <input name="name" value="{{ student.name }}" class="form-control mb-2" required>
+    <input name="department" value="{{ student.department }}" class="form-control mb-2" required>
+    <input name="year" value="{{ student.year }}" class="form-control mb-2" required>
+    <button class="btn btn-warning">Update Student</button>
+</form>
+<a href="/view_students" class="btn btn-secondary mt-2">⬅ Back</a>
+{% endblock %}

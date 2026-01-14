@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}Issue Book{% endblock %}
+{% block content %}
+<h2>Issue Book</h2>
+<form method="post" class="card p-3 shadow">
+    <label>Student</label>
+    <select name="student_id" class="form-control mb-2" required>
+        {% for s in students %}
+        <option value="{{ s.studentid }}">ID: {{ s.studentid }} - {{ s.name }} ({{ s.department }})</option>
+        {% endfor %}
+    </select>
+    <label>Book</label>
+    <select name="book_id" class="form-control mb-2" required>
+        {% for b in books %}
+        <option value="{{ b.bookid }}">ID: {{ b.bookid }} - {{ b.name }} by {{ b.author }}</option>
+        {% endfor %}
+    </select>
+    <label>Issue Date</label>
+    <input type="date" name="issue_date" class="form-control mb-2" required>
+    <label>Due Date</label>
+    <input type="date" name="due_date" class="form-control mb-2" required>
+    <button class="btn btn-warning">Issue Book</button>
+</form>
+<a href="/" class="btn btn-secondary mt-2">⬅ Back</a>
+{% endblock %}
