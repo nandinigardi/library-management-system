@@ -187,7 +187,26 @@ def delete_book(id):
     if not login_required():
         return redirect("/login")
     db = connect_db()
+    # Delete the book
     db.execute("DELETE FROM books WHERE bookid=?", (id,))
+    
+    # --- RESEQUENCE BOOKS ---
+    books = db.execute("SELECT * FROM books ORDER BY bookid").fetchall()
+    db.execute("DELETE FROM books")
+    db.execute("DELETE FROM sqlite_sequence WHERE name='books'")
+    
+    book_mapping = {}
+    for book in books:
+        old_id = book['bookid']
+        cursor = db.execute("INSERT INTO books (name, author, category) VALUES (?, ?, ?)", 
+                           (book['name'], book['author'], book['category']))
+        new_id = cursor.lastrowid
+        book_mapping[old_id] = new_id
+    
+    # Update active issued_books references
+    for old_bid, new_bid in book_mapping.items():
+        db.execute("UPDATE issued_books SET bookid = ? WHERE bookid = ?", (new_bid, old_bid))
+        
     db.commit()
     db.close()
     return redirect("/view_books")
@@ -242,7 +261,26 @@ def delete_student(id):
     if not login_required():
         return redirect("/login")
     db = connect_db()
+    # Delete the student
     db.execute("DELETE FROM students WHERE studentid=?", (id,))
+    
+    # --- RESEQUENCE STUDENTS ---
+    students = db.execute("SELECT * FROM students ORDER BY studentid").fetchall()
+    db.execute("DELETE FROM students")
+    db.execute("DELETE FROM sqlite_sequence WHERE name='students'")
+    
+    student_mapping = {}
+    for student in students:
+        old_id = student['studentid']
+        cursor = db.execute("INSERT INTO students (name, department, year) VALUES (?, ?, ?)", 
+                           (student['name'], student['department'], student['year']))
+        new_id = cursor.lastrowid
+        student_mapping[old_id] = new_id
+        
+    # Update active issued_books references
+    for old_sid, new_sid in student_mapping.items():
+        db.execute("UPDATE issued_books SET studentid = ? WHERE studentid = ?", (new_sid, old_sid))
+        
     db.commit()
     db.close()
     return redirect("/view_students")
