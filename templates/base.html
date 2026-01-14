@@ -44,12 +44,14 @@
                     <li class="nav-item"><a class="nav-link" href="/books">Books</a></li>
                     <li class="nav-item"><a class="nav-link" href="/students">Students</a></li>
                     <li class="nav-item"><a class="nav-link" href="/issued_books">Issued Books</a></li>
+                    <!-- Logout specifically for Mobile (hidden on PC) -->
+                    <li class="nav-item d-md-none"><a class="nav-link text-warning" href="/logout">Logout</a></li>
                     {% endif %}
                 </ul>
                 <ul class="navbar-nav ms-auto">
                     {% if session.admin %}
-                    <!-- d-none hides on mobile, d-lg-block shows on PC -->
-                    <li class="nav-item d-none d-lg-block"><a class="nav-link" href="/logout">Logout</a></li>
+                    <!-- Logout specifically for PC (hidden on Mobile) -->
+                    <li class="nav-item d-none d-md-block"><a class="nav-link" href="/logout">Logout</a></li>
                     {% endif %}
                 </ul>
             </div>
