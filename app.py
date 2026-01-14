@@ -54,6 +54,26 @@ def init_db():
 # Initialize DB on startup
 init_db()
 
+# ---------- REGISTRATION ----------
+@app.route("/register", methods=["GET", "POST"])
+def register():
+    if request.method == "POST":
+        username = request.form["username"]
+        password = request.form["password"]
+
+        db = connect_db()
+        try:
+            db.execute("INSERT INTO admin (username, password) VALUES (?, ?)", (username, password))
+            db.commit()
+            db.close()
+            flash("Account created successfully! Please login.")
+            return redirect("/login")
+        except sqlite3.IntegrityError:
+            db.close()
+            flash("Username already exists!")
+    
+    return render_template("register.html")
+
 # ---------- LOGIN ----------
 @app.route("/login", methods=["GET", "POST"])
 def login():
